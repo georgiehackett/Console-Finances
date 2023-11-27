@@ -91,15 +91,30 @@ console.log('Financial Analysis');
 
 // Calculate the total number of months included in the dataset.
 
-var totalMonths = finances.length
+var totalMonths = finances.length;
 
 console.log('Total months: ' + totalMonths);
 
-// Calculate he net total amount of Profit/Losses over the entire period.
+// Calculate the net total amount of Profit/Losses over the entire period.
 
-var netProfit = 0
-for (let i = 0; i < totalMonths; i++ ) {
+var netProfit = 0;
+for (let i = 0; i < totalMonths; i++) {
   netProfit += finances[i][1];
 }
 
 console.log('Total: ' + netProfit);
+
+// Calculate the average of the changes in Profit/Losses over the entire period.
+// 1. Track what the total change in Profit/Losses are from month to month
+
+var totalChange = 0
+for (let i = 1; i < totalMonths; i++) { //i = 1 starts iteration with second month
+ totalChange += finances[i][1] - finances[i-1][1];
+}
+
+// 2. Find the average
+
+var avgChange = totalChange / (totalMonths - 1);
+avgChange = avgChange.toFixed(2)
+
+console.log('Average Cange: ' + avgChange);
