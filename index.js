@@ -87,7 +87,7 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-console.log('Financial Analysis');
+console.log('Financial Analysis \n -----------------',);
 
 // Calculate the total number of months included in the dataset.
 
@@ -109,12 +109,39 @@ console.log('Total: ' + netProfit);
 
 var totalChange = 0
 for (let i = 1; i < totalMonths; i++) { //i = 1 starts iteration with second month
- totalChange += finances[i][1] - finances[i-1][1];
+  totalChange += finances[i][1] - finances[i - 1][1];
 }
 
 // 2. Find the average
 
 var avgChange = totalChange / (totalMonths - 1);
-avgChange = avgChange.toFixed(2)
 
-console.log('Average Cange: ' + avgChange);
+console.log('Average Change: ' + avgChange.toFixed(2));
+
+// The greatest increase in Profit/Losses (date and amount) over the entire period.
+
+var greatestInc = 0
+var greatestIncMonth = finances[0][0]
+var greatestDec = 0
+var greatestDecMonth = finances[0][0]
+
+for (i = 1; i < totalMonths; i++) {
+  var change = finances[i][1] - finances[i - 1][1];
+
+  if (change > greatestInc) {
+    greatestInc = change
+    greatestIncMonth = finances[i][0]
+  } else if (change < greatestDec) {
+    greatestDec = change
+    greatestDecMonth = finances[i][0]
+  }
+}
+
+console.log('Greatest Increase in Profits/Losses: ' + greatestIncMonth, '(',greatestInc,')')
+
+console.log('Greatest Decrease in Profits/Losses: ' + greatestDecMonth, '(',greatestDec,')')
+
+
+
+
+
